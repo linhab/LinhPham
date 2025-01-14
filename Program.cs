@@ -53,31 +53,82 @@ namespace BaitapC_
             int sqrt = (int)Math.Sqrt(num);
             return sqrt * sqrt == num;
         }
+
+        //Bài 5: Viết chương trình nhập vào tháng bất kỳ từ bàn phím, hiển thị số ngày có trong tháng ra màn hình.
+        //Check năm mà user nhâp vào có phải là năm nhuận hay không.
+        public static bool IsLeapYear(int year)
+        {
+            return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        }
+
+        public static int HienThiNgayTrongThang(int month, int year)
+            {
+            switch (month)
+                {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    return 31;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    return 30;
+                case 2:
+                    return IsLeapYear(year) ? 29 : 28;
+                default:
+                    return 0;
+
+            }
+        }
+
+        //Bài 6 và 7, 9 không tạo function mà viết trực tiếp vào chương trình.
+
+        //Bài 8: Nhập vào số nguyên dương n, hiển thị ra màn hình các số nguyên tố từ 1 đến n.
+        public static bool CheckSoNguyento(int num)
+                    {
+            if (num <= 1)
+                return false;
+            if (num == 2)
+                return true;
+            if (num % 2 == 0)
+                return false;
+            int n = (int)Math.Floor(Math.Sqrt(num));
+            for (int i = 3; i <= n; i++)
+                {
+                    if (num % i == 0)
+                        return false;
+                    }
+            return true;
+         }
+
         static void Main(string[] args)
         {
             //Bài 1: 
-            char continueOption;
-            do
-            {
-                int num;
-                do
-                {
-                    Console.Write("Hay nhap vao 1 so nguyen duong: ");
-                    num = int.Parse(Console.ReadLine());
-                    if (num <= 0)
-                    {
-                        Console.WriteLine("Vui long nhap mot so nguyen duong!");
-                    }
-                } while (num <= 0);
-                CheckDivisibleByThree(num);
-                Console.WriteLine();
-                Console.Write("Nhap 'Y' de tiep tuc chuong trinh, hoac mot phim khac 'Y' de ket thuc: ");
-                continueOption = Char.ToUpper(Console.ReadKey().KeyChar);
-                Console.WriteLine();
-            } while (continueOption == 'Y');
-            Console.Write("Chuong trinh ket thuc.");
-            Console.ReadKey();
-
+            //char continueOption;
+            //do
+            //{
+            //    int num;
+            //    do
+            //    {
+            //        Console.Write("Hay nhap vao 1 so nguyen duong: ");
+            //        num = int.Parse(Console.ReadLine());
+            //        if (num <= 0)
+            //        {
+            //            Console.WriteLine("Vui long nhap mot so nguyen duong!");
+            //        }
+            //    } while (num <= 0);
+            //    CheckDivisibleByThree(num);
+            //    Console.WriteLine();
+            //    Console.Write("Nhap 'Y' de tiep tuc chuong trinh, hoac mot phim khac 'Y' de ket thuc: ");
+            //    continueOption = Char.ToUpper(Console.ReadKey().KeyChar);
+            //    Console.WriteLine();
+            //} while (continueOption == 'Y');
+            //Console.Write("Chuong trinh ket thuc.");
 
             //Bài 2: 
             //char continueOption;
@@ -100,7 +151,6 @@ namespace BaitapC_
             //    Console.WriteLine();
             //} while (continueOption == 'Y');
             //Console.Write("Chuong trinh ket thuc.");
-            //Console.ReadKey();
 
             //Bai 3:
             //char continueOption;
@@ -124,7 +174,6 @@ namespace BaitapC_
             //    Console.WriteLine();
             //} while (continueOption == 'Y');
             //Console.Write("Chuong trinh ket thuc.");
-            //Console.ReadKey();
 
             //Bai 4:
             //    char continueOption;
@@ -154,7 +203,137 @@ namespace BaitapC_
             //        Console.WriteLine();
             //    } while (continueOption == 'Y');
             //    Console.Write("Chuong trinh ket thuc.");
-            //    Console.ReadKey();
+
+            //Bài 5
+            //Console.Write("Nhap thang ban muon check ngay (tu 1-12): ");
+            //int month = int.Parse(Console.ReadLine());
+            //if (month < 1 || month > 12)
+            //{
+            //    Console.WriteLine("Thang nhap khong hop le. Vui long nhap tu 1 den 12.");
+            //}
+            //else
+            //{
+            //    Console.Write(" Nhap nam: ");
+            //    int year = int.Parse(Console.ReadLine());
+            //    int day = HienThiNgayTrongThang(month, year);
+            //    Console.Write("Thang {0} nam {1} co {2} ngay.", month, year, day);
+            //}
+
+            //Bài 6
+            //try
+            //{
+            //    Console.Write("Nhap 1 so nguyen duong: ");
+            //    int num = int.Parse(Console.ReadLine());
+            //    long sum = 0;
+            //    for (int i = 1; i <= num; i++)
+            //    {
+            //        sum += (long)Math.Pow(i, i);
+            //    }
+            //    Console.WriteLine("Tong S la: {0}", sum);
+            //}
+            //catch(FormatException)
+            //{
+            //    Console.WriteLine("Sai dinh dang.");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Da xay ra loi");
+            //    Console.WriteLine(e.Message);
+            //    Console.WriteLine(e.ToString());
+            //}
+
+            //Bài 7: Viết chương trình nhập vào số nguyên n, tính tổng các số lẽ từ 1 đến n và hiển thị kết quả ra màn hình.
+            //try
+            //{
+            //    Console.Write("Nhap so nguyen n: ");
+            //    int num = int.Parse(Console.ReadLine());
+            //    long sum = 0;
+            //    for (int i = 1; i <= num; i++)
+            //    {
+            //        if (i % 2 != 0)
+            //        {
+            //            sum += i;
+            //        }
+            //    }
+            //    Console.Write("Tong cac so le tu 1 den {0} la: {1}",num, sum);
+            //}
+            //catch (FormatException)
+            //{
+            //    Console.WriteLine("Sai dinh dang.");
+            //}
+            //catch (Exception)
+            //{
+            //    Console.Write("Da xay ra loi.");
+            //}
+
+            //Bài 8: Nhập vào số nguyên dương n, hiển thị ra màn hình các số nguyên tố từ 1 đến n.
+            //try
+            //{
+            //    Console.Write("Nhap 1 so nguyen n: ");
+            //    int num = int.Parse(Console.ReadLine());
+            //    Console.WriteLine("Cac so nguyen to tu 1 den {0} la: ", num);
+            //    for (int i = 0; i <= num; i++)
+            //    {
+            //        if (CheckSoNguyento(i))
+            //        {
+            //            Console.Write(i + " ");
+            //        }
+            //    }
+            //}
+            //catch (FormatException) {
+            //    Console.Write("Sai dinh dang.");
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("Da xay ra loi");
+            //}
+
+            //Bài 9: Viết chương trình nhập vào số hàng n, vẽ tam giác *với số hàng tương ứng.
+            //Console.Write("Nhap 1 so nguyen n: ");
+            //int num = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Tam giac vuong voi {0} hang: ", num);
+            //for (int i = 1; i <= num; i++)
+            //{
+            //    Console.WriteLine(new String('*', i));
+            //}
+
+            //Console.WriteLine();
+            //Console.WriteLine("Tam giac vuong nguoc voi {0} hang: ", num);
+            //for (int i = num; i >= 1; i--)
+            //{
+            //    Console.WriteLine(new String('*', i));
+            //}
+
+            //Console.WriteLine();
+            //Console.WriteLine("Tam giac deu voi {0} hang: ", num);
+            //for (int i = 1; i <= num; i++)
+            //{
+            //    Console.Write(new String(' ', num - i));
+            //    Console.WriteLine(new String('*', 2 * i - 1));
+            //}
+
+            //Console.WriteLine();
+            //Console.WriteLine("Tam giac deu nguoc voi {0} hang: ", num);
+            //for (int i = num; i >= 1; i--)
+            //{
+            //    Console.Write(new String(' ', num - i));
+            //    Console.WriteLine(new String('*', 2 * i - 1));
+            //}
+
+
+
+
+
+
+
+
+
+            Console.ReadKey();
+
+
+
+
+
         }
     }
 }
