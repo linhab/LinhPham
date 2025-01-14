@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,9 +65,9 @@ namespace BaitapC_
         }
 
         public static int HienThiNgayTrongThang(int month, int year)
-            {
+        {
             switch (month)
-                {
+            {
                 case 1:
                 case 3:
                 case 5:
@@ -90,7 +93,7 @@ namespace BaitapC_
 
         //Bài 8: Nhập vào số nguyên dương n, hiển thị ra màn hình các số nguyên tố từ 1 đến n.
         public static bool CheckSoNguyento(int num)
-                    {
+        {
             if (num <= 1)
                 return false;
             if (num == 2)
@@ -102,9 +105,22 @@ namespace BaitapC_
                 {
                     if (num % i == 0)
                         return false;
-                    }
+                }
             return true;
-         }
+        }
+
+        //Bài 10: Nhập vào số nguyên dương n, tính toán và hiển thị dãy Fibonacci ra màn hình.
+        public static void Fibonacci(int num)
+        {
+            long first = 0, second = 1;
+            for (int i = 0; i < num; i++)
+            {
+                Console.Write(first + "    ");
+                long next = first + second;
+                first = second;
+                second = next;
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -289,38 +305,94 @@ namespace BaitapC_
             //}
 
             //Bài 9: Viết chương trình nhập vào số hàng n, vẽ tam giác *với số hàng tương ứng.
-            //Console.Write("Nhap 1 so nguyen n: ");
+            //try
+            //{
+            //    Console.Write("Nhap 1 so nguyen n: ");
+            //    int num = int.Parse(Console.ReadLine());
+            //    Console.WriteLine("Tam giac vuong voi {0} hang: ", num);
+            //    for (int i = 1; i <= num; i++)
+            //    {
+            //        Console.WriteLine(new String('*', i));
+            //    }
+
+            //    Console.WriteLine();
+            //    Console.WriteLine("Tam giac vuong nguoc voi {0} hang: ", num);
+            //    for (int i = num; i >= 1; i--)
+            //    {
+            //        Console.WriteLine(new String('*', i));
+            //    }
+
+            //    Console.WriteLine();
+            //    Console.WriteLine("Tam giac deu voi {0} hang: ", num);
+            //    for (int i = 1; i <= num; i++)
+            //    {
+            //        Console.Write(new String(' ', num - i));
+            //        Console.WriteLine(new String('*', 2 * i - 1));
+            //    }
+
+            //    Console.WriteLine();
+            //    Console.WriteLine("Tam giac deu nguoc voi {0} hang: ", num);
+            //    for (int i = num; i >= 1; i--)
+            //    {
+            //        Console.Write(new String(' ', num - i));
+            //        Console.WriteLine(new String('*', 2 * i - 1));
+            //    }
+            //}
+            //catch (FormatException)
+            //{
+            //    Console.WriteLine("Sai dinh dang");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Da co loi");
+            //}
+
+            //Bài 10: Nhập vào số nguyên dương n, tính toán và hiển thị dãy Fibonacci ra màn hình.
+            //Console.Write("Nhap vao 1 so nguyen duong: ");
             //int num = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Tam giac vuong voi {0} hang: ", num);
-            //for (int i = 1; i <= num; i++)
-            //{
-            //    Console.WriteLine(new String('*', i));
-            //}
-
-            //Console.WriteLine();
-            //Console.WriteLine("Tam giac vuong nguoc voi {0} hang: ", num);
-            //for (int i = num; i >= 1; i--)
-            //{
-            //    Console.WriteLine(new String('*', i));
-            //}
-
-            //Console.WriteLine();
-            //Console.WriteLine("Tam giac deu voi {0} hang: ", num);
-            //for (int i = 1; i <= num; i++)
-            //{
-            //    Console.Write(new String(' ', num - i));
-            //    Console.WriteLine(new String('*', 2 * i - 1));
-            //}
-
-            //Console.WriteLine();
-            //Console.WriteLine("Tam giac deu nguoc voi {0} hang: ", num);
-            //for (int i = num; i >= 1; i--)
-            //{
-            //    Console.Write(new String(' ', num - i));
-            //    Console.WriteLine(new String('*', 2 * i - 1));
-            //}
+            //Console.WriteLine("Day Fibonacci voi {0} phan tu la: ", num);
+            //Fibonacci(num);
 
 
+            //================Bai tap mang==================
+            //Nhập vào mảng gồm n phần tử, với giá trị n được nhập từ người dùng.
+            try
+            {
+                Console.Write("Nhap so luong phan tu cua mang: ");
+                int n = int.Parse(Console.ReadLine());
+                int[] array = new int[n];
+                Console.WriteLine("Nhap cac phan tu cua mang:");
+                for (int i = 0; i < n; i++)
+                {
+                    Console.Write("Phan tu thu {0}: ", i + 1);
+                    array[i] = int.Parse(Console.ReadLine());
+                }
+
+                //Bài 1: Đọc và in các phần tử trong mảng vừa nhập.
+                Console.WriteLine("Cac phan tu trong mang la:");
+                foreach (var item in array)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+
+                //Bài 2: In mảng dữ liệu trên theo chiều đảo ngược.
+                Console.WriteLine("Cac phan tu trong mang theo thu tu đao nguoc la:");
+                for (int i = n - 1; i >= 0; i--)
+                {
+                    Console.Write(array[i] + " ");
+                }
+                Console.WriteLine();
+            }
+            catch (FormatException)
+            {
+                Console.Write("Sai dinh dang.");
+            }
+            catch (Exception)
+            {
+                Console.Write("Da xay ra loi");
+            }
+            
 
 
 
@@ -335,5 +407,6 @@ namespace BaitapC_
 
 
         }
+
     }
 }
