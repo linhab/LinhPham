@@ -367,32 +367,138 @@ namespace BaitapC_
                     Console.Write("Phan tu thu {0}: ", i + 1);
                     array[i] = int.Parse(Console.ReadLine());
                 }
+                Console.WriteLine();
 
                 //Bài 1: Đọc và in các phần tử trong mảng vừa nhập.
-                Console.WriteLine("Cac phan tu trong mang la:");
+                Console.WriteLine("Bai 1: Cac phan tu trong mang la:");
                 foreach (var item in array)
                 {
                     Console.Write(item + " ");
                 }
                 Console.WriteLine();
-
                 //Bài 2: In mảng dữ liệu trên theo chiều đảo ngược.
-                Console.WriteLine("Cac phan tu trong mang theo thu tu đao nguoc la:");
+                Console.WriteLine();
+                Console.WriteLine("Bai 2: Cac phan tu trong mang theo thu tu dao nguoc la:");
                 for (int i = n - 1; i >= 0; i--)
                 {
                     Console.Write(array[i] + " ");
                 }
                 Console.WriteLine();
+
+                //Bài 3: Tìm số phần tử giống nhau trong mảng và hiển thị số lượng giống nhau ra màn hình.
+                Console.WriteLine();
+                Console.WriteLine("Bai 3: So luong cac phan tu giong nhau trong mang:");
+                bool[] isCounted = new bool[n];
+
+                for (int i = 0; i < n; i++)
+                {
+                    if (isCounted[i]) continue;
+
+                    int count = 1;
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (array[i] == array[j])
+                        {
+                            count++;
+                            isCounted[j] = true;
+                        }
+                    }
+                    Console.WriteLine($"Phan tu {array[i]} xuat hien {count} lan");
+                }
+
+                //Bài 4: In các phần tử duy nhất trong mảng.
+                Console.WriteLine();
+                Console.WriteLine("Bai 4: Cac phan tu duy nhat trong mang:");
+                bool hasUnique = false;
+                for (int i = 0; i < n; i++)
+                {
+                    bool isUnique = true;
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (i != j && array[i] == array[j])
+                        {
+                            isUnique = false;
+                            break;
+                        }
+                    }
+                    if (isUnique)
+                        {
+                            Console.Write(array[i]+"  ");
+                            hasUnique = true;
+                        }
+
+                }
+                    if (!hasUnique) 
+                        {
+                            Console.WriteLine("Khong co phan tu duy nhat trong mang.");
+                        }
+
+                //Bài 5: Chia mảng dữ liệu ban đầu thành mảng chẵn và mảng lẻ.
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Bai 5: Chia mang du lieu ban dau thanh man chan va mang le.");
+                List <int> listChan = new List<int>();
+                List <int> listLe = new List<int>();
+                foreach (int i in array)
+                {
+                    if (i % 2 == 0)
+                    {
+                        listChan.Add(i);
+                    }
+                    else {
+                    listLe.Add(i);
+                    }
+                }
+                Console.WriteLine("Mang chan: ");
+                Console.WriteLine(string.Join(" ", listChan));
+                Console.WriteLine("Mang le: ");
+                Console.WriteLine(string.Join(" ", listLe));
+
+                //Bài 6: Sắp xếp mảng theo thứ tự giảm dần.
+                Console.WriteLine();
+                Console.WriteLine("Bai 6: Sap xep mang theo thu tu giam dan.");
+                Array.Sort(array);
+                Array.Reverse(array);
+                Console.WriteLine("Mang sau khi duoc sap xep theo thu tu giam dan:");
+                Console.WriteLine(string.Join(" ", array));
+
+                //Bài 7: Tìm kiếm phần tử lớn thứ hai trong mảng dữ liệu ban đầu.
+                Console.WriteLine();
+                Console.WriteLine("Bai 7: Tim kiem phan tu lon thu hai trong mang du lieu ban dau.");
+                int max = int.MinValue;
+                int secondMax = int.MinValue;
+
+                foreach (int num in array)
+                {
+                    if (num > max)
+                    {
+                        secondMax = max;
+                        max = num;
+                    }
+                    else if (num > secondMax && num < max)
+                    {
+                        secondMax = num;
+                    }
+                }
+
+                if (secondMax == int.MinValue)
+                {
+                    Console.WriteLine("Khong co phan tu lon thu hai trong mang.");
+                }
+                else
+                {
+                    Console.WriteLine($"Phan tu lon thu hai trong mang la: {secondMax}");
+                }
             }
             catch (FormatException)
-            {
-                Console.Write("Sai dinh dang.");
-            }
-            catch (Exception)
-            {
+                {
+                 Console.Write("Sai dinh dang.");
+                }
+                catch (Exception)
+                {
                 Console.Write("Da xay ra loi");
-            }
-            
+             }
+
             Console.ReadKey();
         }
 
