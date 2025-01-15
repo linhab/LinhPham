@@ -393,19 +393,7 @@ namespace BaitapC_
                 Console.Write("Da xay ra loi");
             }
             
-
-
-
-
-
-
-
             Console.ReadKey();
-
-
-
-
-
         }
 
     }
